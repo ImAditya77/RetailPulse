@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "title": "RetailPulse Model MAPE Accuracy",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+    },
+    {
+      "title": "Data Drift KS-Test Alert Level",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["retailpulse", "zidio"],
+  "time": {"from": "now-6h", "to": "now"},
+  "title": "RetailPulse Production Dashboard"
+}

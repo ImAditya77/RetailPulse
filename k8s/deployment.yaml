@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retailpulse-app
+  labels:
+    app: retailpulse
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: retailpulse
+  template:
+    metadata:
+      labels:
+        app: retailpulse
+    spec:
+      containers:
+      - name: retailpulse-container
+        image: zidio/retailpulse:latest
+        ports:
+        - containerPort: 8501
+        - containerPort: 8000
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
