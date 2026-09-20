@@ -280,7 +280,7 @@ if page == "Page 1: Sales Dashboard":
     with col_right:
         st.markdown("### 🛍️ Top Performing SKUs")
         prod_sales = clean_df.groupby('Description')['Quantity'].sum().reset_index().sort_values('Quantity', ascending=False).head(10)
-        fig_prod = px.bar(prod_sales, x='Quantity', y='Description', orientation='h', color='Quantity', color_continuous_scale='Emerald')
+        fig_prod = px.bar(prod_sales, x='Quantity', y='Description', orientation='h', color='Quantity', color_continuous_scale=['#312E81', '#10B981'])
         fig_prod.update_layout(template="plotly_dark", paper_bgcolor=BG_CARD, plot_bgcolor=BG_CARD, height=350, yaxis={'categoryorder':'total ascending'})
         st.plotly_chart(fig_prod, use_container_width=True)
 
