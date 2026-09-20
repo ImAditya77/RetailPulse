@@ -45,7 +45,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom SaaS Figma Design CSS System (Indigo Slate Dark Mode)
+# Custom Advanced SaaS Figma Design CSS System
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -142,10 +142,105 @@ st.markdown("""
         margin-top: 8px;
     }
 
-    /* Sidebar Custom Styling */
+    /* --- ADVANCED SIDEBAR STYLING --- */
     section[data-testid="stSidebar"] {
-        background-color: #111827 !important;
+        background: #0F172A !important;
         border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding-top: 10px;
+    }
+
+    /* Hide standard radio circle icons */
+    div[data-testid="stSidebar"] div[role="radiogroup"] label div:first-child {
+        display: none !important;
+    }
+
+    /* Style radio navigation items into pill cards */
+    div[data-testid="stSidebar"] div[role="radiogroup"] label {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+        cursor: pointer !important;
+        transition: all 0.25s ease !important;
+        width: 100% !important;
+    }
+
+    div[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+        background: rgba(99, 102, 241, 0.15) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        transform: translateX(4px) !important;
+    }
+
+    /* Active selected navigation item */
+    div[data-testid="stSidebar"] div[role="radiogroup"] label[aria-checked="true"],
+    div[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true"] {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.1)) !important;
+        border: 1px solid #6366F1 !important;
+        border-left: 4px solid #6366F1 !important;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    div[data-testid="stSidebar"] div[role="radiogroup"] label p {
+        color: #F3F4F6 !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Sidebar Profile Card */
+    .sidebar-profile {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .sidebar-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366F1, #8B5CF6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+    }
+    .sidebar-user-name {
+        color: #F9FAFB;
+        font-size: 0.9rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .sidebar-user-role {
+        color: #9CA3AF;
+        font-size: 0.75rem;
+    }
+
+    /* Engine Specs Card */
+    .sidebar-specs-card {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 14px;
+        margin-top: 16px;
+    }
+    .sidebar-specs-title {
+        color: #818CF8;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+    .sidebar-specs-item {
+        color: #CBD5E1;
+        font-size: 0.78rem;
+        margin-bottom: 4px;
     }
 
     /* Styled Tables */
@@ -187,21 +282,40 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar Navigation
-st.sidebar.markdown("### ⚡ **RetailPulse Navigation**")
+# Render Advanced Sidebar Header & Profile Card
+st.sidebar.markdown("""
+<div class="sidebar-profile">
+    <div class="sidebar-avatar">AD</div>
+    <div>
+        <div class="sidebar-user-name">Aditya Dixit</div>
+        <div class="sidebar-user-role">Lead Analytics Admin • <span style="color: #34D399;">● Online</span></div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+st.sidebar.markdown("<div style='color: #9CA3AF; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;'>MAIN NAVIGATION</div>", unsafe_allow_html=True)
+
 page = st.sidebar.radio(
     "Select View", 
     [
-        "Page 1: Sales Dashboard",
-        "Page 2: Customer Dashboard", 
-        "Page 3: Forecast Dashboard",
-        "Page 4: Inventory & MLOps"
-    ]
+        "📈  Executive Sales",
+        "👥  Customer Analytics & Churn", 
+        "🔮  Demand Forecasting",
+        "📦  Inventory & MLOps"
+    ],
+    label_visibility="collapsed"
 )
 
-st.sidebar.markdown("---")
-st.sidebar.markdown("#### ⚙️ Engine Specifications")
-st.sidebar.caption("• **Forecast**: Prophet + PyTorch LSTM\n• **Segmentation**: RFM + K-Means / DBSCAN\n• **Churn**: XGBoost Classifier\n• **Storage**: Local MLflow Registry")
+# Render Engine Specs Card in Sidebar
+st.sidebar.markdown("""
+<div class="sidebar-specs-card">
+    <div class="sidebar-specs-title">⚙️ Engine Stack</div>
+    <div class="sidebar-specs-item"><b>Forecast</b>: Prophet + PyTorch LSTM</div>
+    <div class="sidebar-specs-item"><b>Cluster</b>: RFM + K-Means / DBSCAN</div>
+    <div class="sidebar-specs-item"><b>Churn</b>: XGBoost Classifier</div>
+    <div class="sidebar-specs-item"><b>MLOps</b>: MLflow & KS-Drift Test</div>
+</div>
+""", unsafe_allow_html=True)
 
 # Color Constants matching Figma SaaS Theme
 PRIMARY_INDIGO = "#6366F1"
@@ -210,7 +324,7 @@ ACCENT_ORANGE = "#F59E0B"
 BG_CARD = "#111827"
 
 # --- PAGE 1: SALES DASHBOARD ---
-if page == "Page 1: Sales Dashboard":
+if page == "📈  Executive Sales":
     st.markdown("## 📈 Executive Sales Overview")
     st.caption("Real-time transactional summary, aggregate revenue trends, and regional performance analysis.")
     
@@ -285,7 +399,7 @@ if page == "Page 1: Sales Dashboard":
         st.plotly_chart(fig_prod, use_container_width=True)
 
 # --- PAGE 2: CUSTOMER DASHBOARD ---
-elif page == "Page 2: Customer Dashboard":
+elif page == "👥  Customer Analytics & Churn":
     st.markdown("## 👥 Customer Segmentation & Churn Risk Engine")
     st.caption("RFM Clustering, Silhouette Quality Index, and XGBoost Risk Prediction.")
     
@@ -359,7 +473,7 @@ elif page == "Page 2: Customer Dashboard":
         st.plotly_chart(fig_imp, use_container_width=True)
 
 # --- PAGE 3: FORECAST DASHBOARD ---
-elif page == "Page 3: Forecast Dashboard":
+elif page == "🔮  Demand Forecasting":
     st.markdown("## 🔮 Predictive Demand & What-If Simulator")
     st.caption("Hybrid Prophet + PyTorch LSTM 30-Day Demand Forecasting Ensemble.")
     
@@ -420,7 +534,7 @@ elif page == "Page 3: Forecast Dashboard":
     st.plotly_chart(fig_sim, use_container_width=True)
 
 # --- PAGE 4: INVENTORY & MLOPS ---
-elif page == "Page 4: Inventory & MLOps":
+elif page == "📦  Inventory & MLOps":
     st.markdown("## 📦 Inventory Optimization & MLOps Health")
     st.caption("Safety Stock, Reorder Point (ROP), EOQ, Data Drift Detection & MLflow Registry Logs.")
     
