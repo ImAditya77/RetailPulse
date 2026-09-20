@@ -23,5 +23,5 @@ if __name__ == "__main__":
     print("   -> PASSED!")
     
     print("\n==========================================")
-    print("✨ ALL UNIT TESTS PASSED SUCCESSFULLY! ✨")
+    print(" ALL UNIT TESTS PASSED SUCCESSFULLY! ")
     print("==========================================")
