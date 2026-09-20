@@ -1,23 +1,42 @@
+import os
+import sys
+
+# Ensure project root and app directory are both in sys.path for Streamlit Cloud
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.abspath(os.path.join(current_dir, ".."))
+
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-import os
-import sys
 
-# Ensure utils import path is active
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from app.utils.data_loader import (
-    download_or_get_data, preprocess_data, 
-    compute_rfm_features, compute_timeseries_features
-)
-from app.utils.models import (
-    run_customer_segmentation, train_hybrid_forecaster,
-    train_churn_model, calculate_inventory_optimization,
-    detect_data_drift
-)
+# Robust import handling for local vs cloud runners
+try:
+    from app.utils.data_loader import (
+        download_or_get_data, preprocess_data, 
+        compute_rfm_features, compute_timeseries_features
+    )
+    from app.utils.models import (
+        run_customer_segmentation, train_hybrid_forecaster,
+        train_churn_model, calculate_inventory_optimization,
+        detect_data_drift
+    )
+except ModuleNotFoundError:
+    from utils.data_loader import (
+        download_or_get_data, preprocess_data, 
+        compute_rfm_features, compute_timeseries_features
+    )
+    from utils.models import (
+        run_customer_segmentation, train_hybrid_forecaster,
+        train_churn_model, calculate_inventory_optimization,
+        detect_data_drift
+    )
 
 st.set_page_config(
     page_title="RetailPulse - AI Analytics Platform",
