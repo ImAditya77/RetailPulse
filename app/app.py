@@ -173,7 +173,7 @@ st.markdown("""
     <div class="top-header-left">
         <span style="font-size: 1.8rem;">⚡</span>
         <div>
-            <h1 class="top-header-title">RetailPulse <span style="color: #6366F1;">SaaS Engine</span></h1>
+            <h1 class="top-header-title">RetailPulse</h1>
             <span style="color: #9CA3AF; font-size: 0.8rem;">Enterprise Retail Analytics & Demand Forecasting Platform</span>
         </div>
     </div>
