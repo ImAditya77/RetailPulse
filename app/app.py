@@ -198,7 +198,7 @@ elif page == "Page 2: Customer Dashboard":
         at_risk_list = churn_df.sort_values('ChurnRiskScore', ascending=False).head(15)[
             ['CustomerID', 'Segment', 'Recency', 'Frequency', 'Monetary', 'ChurnRiskScore']
         ]
-        st.dataframe(at_risk_list.style.background_gradient(subset=['ChurnRiskScore'], cmap='Reds'), use_container_width=True)
+        st.dataframe(at_risk_list, use_container_width=True)
         
     with col_imp:
         st.subheader("XGBoost Churn Feature Importances")
@@ -287,9 +287,9 @@ elif page == "Page 4: Inventory & MLOps":
         prod_inv['LeadTimeDays'] = 7
         prod_inv['SafetyStock'] = np.random.randint(15, 60, size=len(prod_inv))
         prod_inv['ReorderPoint'] = prod_inv['Quantity'] // 10 + prod_inv['SafetyStock']
-        prod_inv['Status'] = np.where(prod_inv['Quantity'] < prod_inv['ReorderPoint'], '🚨 REORDER NOW', '✅ STOCK OK')
+        prod_inv['Status'] = np.where(prod_inv['Quantity'] < prod_inv['ReorderPoint'], 'REORDER NOW', 'STOCK OK')
         
-        st.dataframe(prod_inv.style.applymap(lambda v: 'color: #FF5252; font-weight: bold;' if v == '🚨 REORDER NOW' else 'color: #64FFDA;', subset=['Status']), use_container_width=True)
+        st.dataframe(prod_inv, use_container_width=True)
         
         csv_data = prod_inv.to_csv(index=False).encode('utf-8')
         st.download_button("📥 Export Inventory Recommendations (CSV)", data=csv_data, file_name="retailpulse_inventory_reorder.csv", mime="text/csv")
