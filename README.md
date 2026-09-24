@@ -25,7 +25,7 @@
 
 **RetailPulse** is an enterprise-grade, end-to-end data science & MLOps platform engineered for retail chains, supermarket brands, and e-commerce companies. It solves stock mismanagement, customer attrition, and demand unpredictability by leveraging modern statistical time-series forecasting, deep sequential neural networks, clustering algorithms, and gradient-boosted classification models.
 
-Designed with a high-fidelity **Figma SaaS Dark Mode Interface**, RetailPulse turns high-volume retail transactions into actionable stock reorder points, customer retention strategies, and interactive scenario simulations.
+Designed with a high-fidelity, RetailPulse turns high-volume retail transactions into actionable stock reorder points, customer retention strategies, and interactive scenario simulations.
 
 ---
 
